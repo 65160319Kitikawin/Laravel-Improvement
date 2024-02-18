@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Route::get('/login', [AccountController::class, 'login_view'])->name('login');
 Route::get('/register', [AccountController::class, 'register_view']);
+Route::post('/login', [MyAuth::class, 'login_process']);
+Route::post('/register', [MyAuth::class, 'register_process']);
 Route::get('/logout', [AccountController::class, 'logout_process']);
