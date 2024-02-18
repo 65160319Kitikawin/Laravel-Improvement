@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,6 @@ Route::get('/', function () {
 
 Route::get('/login', [AccountController::class, 'login_view'])->name('login');
 Route::get('/register', [AccountController::class, 'register_view']);
-Route::post('/login', [MyAuth::class, 'login_process']);
-Route::post('/register', [MyAuth::class, 'register_process']);
+Route::post('/login', [AccountController::class, 'login_process']);
+Route::post('/register', [AccountController::class, 'register_process']);
 Route::get('/logout', [AccountController::class, 'logout_process']);

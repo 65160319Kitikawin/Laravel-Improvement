@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
 {
     function login_view() {
-        return view("login");
+        return view("Login And Register.login");
     }
 
     function register_view() {
-        return view("register");
+        return view("Login And Register.register");
     }
 
     function login_process(Request $req){
@@ -28,7 +28,7 @@ class AccountController extends Controller
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
             return Redirect::to('welcome');
         }else{
-            return Redirect::to('login');
+            return Redirect::to('Login And Register.login');
         }
     }
 
@@ -43,11 +43,11 @@ class AccountController extends Controller
 
         User::create($data);
 
-        return Redirect::to('login');
+        return Redirect::to('Login And Register.login');
     }
 
     function logout_process(){
         Auth::logout();
-        return Redirect::to('login');
+        return Redirect::to('Login And Register.login');
     }
 }
