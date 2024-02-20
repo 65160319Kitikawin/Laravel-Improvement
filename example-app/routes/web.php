@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +15,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get("/login",[AuthController::class,"login_view"]) -> name('login');
+Route::get("/register",[AuthController::class,"register_view"]);
+Route::get('/logout', [AuthController::class, 'logout_process']);
+Route::post("/login",[AuthController::class,"login_process"]);
+Route::post("/register",[AuthController::class,"register_process"]);
 
-Route::get('/login', [AccountController::class, 'login_view'])->name('login');
-Route::get('/register', [AccountController::class, 'register_view']);
-Route::post('/login', [AccountController::class, 'login_process']);
-Route::post('/register', [AccountController::class, 'register_process']);
-Route::get('/logout', [AccountController::class, 'logout_process']);
+Route::resource('customers', CrudController::class) -> middleware('auth');
